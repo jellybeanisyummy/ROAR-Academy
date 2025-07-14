@@ -14,8 +14,8 @@ try:
     # Obtain current python file's path
     path = os.path.dirname(os.path.abspath(__file__))
     # Open source file and the result file
-    source_handle = open(path+'/'+source_filename,'r')
-    hashtag_handle = open(path+'/'+hashtag_filename,'wb+')
+    source_handle = open(path+'/'+source_filename,'r')  # making sure to read in text mode because that's how the file is saved
+    hashtag_handle = open(path+'/'+hashtag_filename,'wb+')      # making sure to write in binary mode
 
     md5 = hashlib.md5()
     for line in source_handle:
@@ -26,7 +26,7 @@ try:
     hashtag_handle.write(md5.digest())
 
     # Re-read from the beginning to verify
-    hashtag_handle.seek(0)
+    hashtag_handle.seek(0)      # after writing, you are at the end of the file, so must move back to beginning (0)
     hashtag_bytes = hashtag_handle.read()
     print(hashtag_bytes)
 except IOError:
