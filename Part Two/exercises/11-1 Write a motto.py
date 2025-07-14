@@ -18,7 +18,7 @@ finally:
 
 # open the file again to read its content + write more content
 try:
-    new_file = open(path + '/motto.txt', 'r+')
+    new_file = open(path + '/motto.txt', 'a+')
     content = new_file.read()
     print("Content of the file:", content)
     new_file.write("\nLet there be light!")
