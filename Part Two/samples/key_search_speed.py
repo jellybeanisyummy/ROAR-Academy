@@ -18,14 +18,15 @@ print('Reading I/O file ... ', end = ' ')
 try:
     # Get the script path
 
-    path = os.path.dirname(os.path.abspath(__file__))
+    path = os.path.dirname(os.path.abspath(__file__))       # __file__ provides full path of this current script
+                                                            # os.path.dirname() returns the directory name of the full path
 
     # Open the file for read
     f_handle = open(path+'/'+file_name,"r")
     f_handle.readline()   # The first line is table captions
     # Create three dictionaries of different lengths
     count = 0
-    for line in f_handle:
+    for line in f_handle:           # reads one line at a time, not one character at a time
         count += 1
         ticker, info = line.split('|',1)
         if count<=10:
