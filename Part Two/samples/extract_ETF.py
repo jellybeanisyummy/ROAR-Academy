@@ -14,7 +14,7 @@ try:
     path = os.path.dirname(os.path.abspath(__file__))
     # Open source file and the result file
     source_handle = open(path+'/'+source_filename,'r')
-    result_handle = open(path+'/'+result_filename,'w')
+    result_handle = open(path+'/'+result_filename,'w')      # 'w' means write mode, will overwrite existing file/create new file
 
     for line in source_handle:
         if 'ETF' in line:           # if substring ETF exists in one line
