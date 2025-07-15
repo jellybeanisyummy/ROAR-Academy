@@ -126,6 +126,7 @@ for i in range(300,600):
 for i in range(600,track_length):
     targets.append([i, 0]); track_x.append(i); track_y.append(0)
 
+#Set PID parameters
 K_p = 0.2; K_d = 3; K_i = 0.0005
 x_trajectory, y_trajectory = vehicle.run_PID(targets, K_p, K_d, K_i, track_length)  
 n = len(x_trajectory)

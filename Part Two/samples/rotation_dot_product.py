@@ -12,7 +12,8 @@ def rotationMatrix(degree):
     s = np.sin(np.radians(degree))
     return np.array([[c, -s], [s, c]])
 
-v1 = np.array([[1.,3.]]).T     # Another notation for transpose
+v1 = np.array([[1.,3.]]).T     # Another notation for transpose; transposed into a column vector
+                               # because when doing A@b we want b to be a column vector
 rotation_matrix = rotationMatrix(45)
 
 v2 = rotation_matrix.dot(v1)

@@ -48,5 +48,6 @@ while True:
     plt.arrow(center[0], center[1], minute_vector[0], minute_vector[1], linewidth = minute_hand_width, color = 'black')
     plt.arrow(center[0], center[1], second_vector[0], second_vector[1], linewidth = second_hand_width, color = 'red')
 
-    plt.pause(0.1)
-    plt.clf()
+    plt.pause(0.1)      # without delay, python will not be able to bring up the plot window as it won't have enough time
+                        # to send the information on what to plot to the graphics engine (this process is slow)
+    plt.clf()       # clear the canvas
