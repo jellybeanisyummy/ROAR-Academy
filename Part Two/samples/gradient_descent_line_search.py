@@ -60,7 +60,7 @@ while delta > epsilon and iter < max_iteration:
     aa_next = aa
     for rate in learn_rates:
         aa_try = aa - rate * grad(aa)
-        value_next = penalty(aa_try[0],aa_try[1])
+        value_next = penalty(aa_try[0], aa_try[1])
         if value_next<value and value - value_next > delta:
             delta = value - value_next
             aa_next = aa_try

@@ -46,7 +46,7 @@ def grad(aa):
 aa = np.array([-4, 4])
 delta = np.inf
 epsilon = 0.001
-learn_rate = 0.01
+learn_rate = 0.01       # step size (represented with lambda in the lecture)
 step_count = 0
 ax2.scatter(aa[0], aa[1], penalty(aa[0],aa[1]), c='b', s=100, marker='*')
 # Update vector aa
