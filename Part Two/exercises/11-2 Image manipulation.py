@@ -35,8 +35,9 @@ flag = (flag * 255).astype('uint8')
 
 # create modified lenna image with flag overlay
 modified_lenna = original_lenna.copy()
+modified_lenna_cols = modified_lenna.shape[1]
 # These images might have different data types:
-modified_lenna[:row, :col] = flag
+modified_lenna[:row, modified_lenna_cols - col:] = flag
 pyplot.subplot(1, 2, 2)
 pyplot.imshow(modified_lenna)
 pyplot.show()

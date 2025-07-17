@@ -15,7 +15,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from keras.activations import sigmoid
 
-linearSeparableFlag = True
+linearSeparableFlag = True      # Set to True for linear separable data, False for non-linear separable data (for testing!)
 x_bias = 0
 
 def toy_2D_samples(x_bias ,linearSeparableFlag):
@@ -55,12 +55,15 @@ samples, labels = toy_2D_samples(x_bias ,linearSeparableFlag)
 
 # Split training and testing set
 
-randomOrder = np.random.permutation(200)
+randomOrder = np.random.permutation(200)        # generates form random indexes to be used to grab
+                                                # random elements from samples/labels matrices
 trainingX = samples[randomOrder[0:100],:]
 trainingY = labels[randomOrder[0:100]]
 testingX = samples[randomOrder[100:200],:]
 testingY = labels[randomOrder[100:200]]
 
+# create neural network model
+# The model is a single layer perceptron with 2 inputs and 1 output
 model = Sequential()
 model.add(Dense(1, input_shape=(2,), activation='sigmoid', use_bias=False))
 model.compile(loss='mean_squared_error', optimizer='sgd', metrics=['binary_accuracy'])
