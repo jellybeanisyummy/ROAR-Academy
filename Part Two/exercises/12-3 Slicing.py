@@ -19,3 +19,7 @@ print("Pink Box:", pink_box)
 # slicing green box
 green_box = number_array[2:4, 4:]
 print("Green Box:", green_box)
+
+# slicing orange areas
+orange_box = number_array[2:5:2, 0:5:2]
+print("Orange Box:", orange_box)

@@ -1,0 +1,1 @@
+# w1 could be 3/2 and w0 could be 3; w2 could be something close to 3/2 like 1.6 (accuracy up to machine epsilon)
