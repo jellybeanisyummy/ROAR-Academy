@@ -119,6 +119,8 @@ def create_vit_classifier(
     inputs = layers.Input(shape=(image_size, image_size, 3))
     
     # Augmentation layer (only applied during training)
+    # creates more data by flipping, rotating, and zooming the images
+    # input goes into the augmentation layer first to turn into more training data
     augmented = keras.Sequential([
         layers.RandomFlip("horizontal"),
         layers.RandomRotation(0.1),
@@ -155,6 +157,7 @@ def load_cifar100_data() -> Tuple[Tuple[np.ndarray, np.ndarray], Tuple[np.ndarra
     (x_train, y_train), (x_test, y_test) = cifar100.load_data()
     
     # Convert to float32 and normalize to [0, 1]
+    # converted from bytes (RGB bytes) to float32
     x_train = x_train.astype("float32") / 255.0
     x_test = x_test.astype("float32") / 255.0
     
@@ -259,7 +262,7 @@ if __name__ == "__main__":
     # Create Vision Transformer model
     model = create_vit_classifier(
         image_size=32,
-        patch_size=4,
+        patch_size=4,   # passes patch by patch of 4X4 data into VIT transformer sequentially
         num_layers=6,  # Reduced for faster training
         num_classes=100,
         d_model=128,
@@ -268,6 +271,7 @@ if __name__ == "__main__":
         dropout=0.2,
     )
     
+    # learning rate here is very small because for images, we should use a small learning rate
     # Compile model
     model.compile(
         optimizer=keras.optimizers.Adam(learning_rate=1e-3),
@@ -278,6 +282,8 @@ if __name__ == "__main__":
     print(model.summary())
     
     # Create callbacks
+    # if stuck in a local minimum, we can use early stopping to stop training
+    # monitor is the learning rate schedule, decreases the learning rate if the validation loss does not improve
     early_stopping = keras.callbacks.EarlyStopping(
         monitor='val_loss',
         patience=10,
